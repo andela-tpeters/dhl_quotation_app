@@ -30,7 +30,7 @@ block content
           td #{$quote->BkgDetails->QtdShp->ShippingCharge} #{$quote->BkgDetails->QtdShp->CurrencyCode}
         tr
           td(colspan='2')
-            form(action="/quotation/book", method="POST", class="twelve columns")
+            form(action="/dhl/quotation/book", method="POST", class="twelve columns")
               input(type="hidden", class="twelve columns", name="origin_location", value="#{$quote->BkgDetails->OriginServiceArea->ServiceAreaCode}")
               input(type="hidden", class="twelve columns", name="destination_location", value="#{$quote->BkgDetails->DestinationServiceArea->ServiceAreaCode}")
               input(type="hidden", class="twelve columns", name="weight", value="#{$quote->BkgDetails->QtdShp->DimensionalWeight} #{$quote->BkgDetails->QtdShp->WeightUnit}")

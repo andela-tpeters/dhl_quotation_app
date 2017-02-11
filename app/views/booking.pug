@@ -3,7 +3,7 @@ block content
 	.row
     .three.columns &nbsp;
     .six.columns
-      form(action="/quotation/mail", method="POST", class="twelve columns", style="padding: 10px;")
+      form(action="/dhl/quotation/mail", method="POST", class="twelve columns", style="padding: 10px;")
         input(type="hidden", class="twelve columns", name="origin_location", value="#{$origin_location}")
         input(type="hidden", class="twelve columns", name="destination_location", value="#{$destination_location}")
         input(type="hidden", class="twelve columns", name="weight", value="#{$weight}")
