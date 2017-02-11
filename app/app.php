@@ -6,18 +6,18 @@ namespace App;
 */
 class App
 {
-	private static $path_parts;
-	private static $base_controller = "App\Controllers\BaseController";
-	private static $method;
+	private $path_parts;
+	private $base_controller = "App\Controllers\BaseController";
+	private $method;
 
-	public static function build($path_info = "/pages/index", $method = "GET") {
-		self::$method = $method;
-		self::get_parts($path_info);
-		return get_called_class();
+	public function build($path_info = "/pages/index", $method = "GET") {
+		$this->$method = $method;
+		$this->get_parts($path_info);
+		return $this;
 	}
 
-	public static function response() {
-		list($klass, $method) = self::$path_parts;
+	public function response() {
+		list($klass, $method) = $this->$path_parts;
 		
 		if(method_exists($klass, $method)) {
 			$klass_method = array($klass, $method);
@@ -31,28 +31,28 @@ class App
 		}
 	}
 
-	private static function get_parts($path_info) {
+	private function get_parts($path_info) {
 		$parts = explode("/", $path_info);
 		$parts[0] == "" ? array_shift($parts) : null;
-		$klass = self::get_route_class($parts[0]);
+		$klass = $this->get_route_class($parts[0]);
 		$parts[0] = new $klass;
-		$parts[1] = self::get_method($parts[1]);
-		self::$path_parts = $parts;
+		$parts[1] = $this->get_method($parts[1]);
+		$this->$path_parts = $parts;
 	}
 
-	private static function get_route_class($class_name) {
-		$formatted_string = self::format_string($class_name);
+	private function get_route_class($class_name) {
+		$formatted_string = $this->format_string($class_name);
 		$klass = "App\Controllers\\".$formatted_string."Controller";
-		return class_exists($klass) ? $klass : self::$base_controller;
+		return class_exists($klass) ? $klass : $this->$base_controller;
 	}
 
-	private static function get_method($method) {
-		$formatted_string = self::format_string($method);
-		return strtolower(self::$method).$formatted_string;
+	private function get_method($method) {
+		$formatted_string = $this->format_string($method);
+		return strtolower($this->$method).$formatted_string;
 
 	}
 
-	private static function format_string($string) {
+	private function format_string($string) {
 		$split_str = explode("_", $string);
 		$string_concat = join(" ", $split_str);
 		$capitalized_words = ucwords($string_concat);

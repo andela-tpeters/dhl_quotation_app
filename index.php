@@ -7,6 +7,8 @@ if(!defined('BASEDIR')) {
 require __DIR__ . '/vendor/autoload.php';
 use App\App;
 
+$dhl = new App();
+
 function dd($val) {
 	echo "<pre>";
 	print_r($val);
@@ -15,6 +17,6 @@ function dd($val) {
 	die();
 }
 
-isset($_SERVER["PATH_INFO"]) ? App::build($_SERVER["PATH_INFO"], $_SERVER["REQUEST_METHOD"])::response() : App::build()::response();
+isset($_SERVER["PATH_INFO"]) ? $dhl->build($_SERVER["PATH_INFO"], $_SERVER["REQUEST_METHOD"])::response() : $dhl->build()::response();
 
 
