@@ -17,6 +17,6 @@ function dd($val) {
 	die();
 }
 
-isset($_SERVER["PATH_INFO"]) ? $dhl->build($_SERVER["PATH_INFO"], $_SERVER["REQUEST_METHOD"])::response() : $dhl->build()::response();
+isset($_SERVER["PATH_INFO"]) ? $dhl->build($_SERVER["PATH_INFO"], $_SERVER["REQUEST_METHOD"])->response() : $dhl->build()->response();
 
 
