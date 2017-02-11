@@ -1,0 +1,24 @@
+{
+    "name": "tijesunimipeters/dhl",
+    "description": "This is dhl quotation implementation",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Tijesunimi Peters",
+            "email": "tijesunimi48@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "alfallouji/dhl_api": "^0.2.10",
+        "kylekatarnls/jade-php": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "app"
+        ]
+    }
+}

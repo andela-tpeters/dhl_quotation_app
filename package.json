@@ -1,0 +1,38 @@
+{
+  "name": "dhl",
+  "version": "1.0.0",
+  "description": "This package is for the customers getting a quote from DHL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-tpeters/quota.git"
+  },
+  "keywords": [
+    "DHL",
+    "quotes"
+  ],
+  "author": "Tijesunimi Peters",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-tpeters/quota/issues"
+  },
+  "homepage": "https://github.com/andela-tpeters/quota#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssbeautify": "^0.1.3",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "nodemon": "^1.11.0",
+    "uglify": "^0.1.5"
+  }
+}

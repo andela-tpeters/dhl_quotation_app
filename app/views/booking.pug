@@ -1,0 +1,59 @@
+extends layouts/base.pug
+block content
+	.row
+    .three.columns &nbsp;
+    .six.columns
+      form(action="/quotation/mail", method="POST", class="twelve columns", style="padding: 10px;")
+        input(type="hidden", class="twelve columns", name="origin_location", value="#{$origin_location}")
+        input(type="hidden", class="twelve columns", name="destination_location", value="#{$destination_location}")
+        input(type="hidden", class="twelve columns", name="weight", value="#{$weight}")
+        input(type="hidden", class="twelve columns", name="pickup_date", value="#{$pickup_date}")
+        input(type="hidden", class="twelve columns", name="transit_days", value="#{$transit_days}")
+        input(type="hidden", class="twelve columns", name="delivery_date", value="#{$delivery_date}")
+        input(type="hidden", class="twelve columns", name="weight_charge", value="#{$weight_charge}")
+        input(type="hidden", class="twelve columns", name="shipping_charge", value="#{$shipping_charge}")
+        input(type="hidden", class="twelve columns", name="width", value="#{$width}")
+        input(type="hidden", class="twelve columns", name="height", value="#{$height}")
+        input(type="hidden", class="twelve columns", name="length", value="#{$length}")
+        .row
+          .one.column &nbsp;
+          .ten.columns
+            .row
+              .six.columns
+                label(for="customer_name") Name
+                input(name="customer_name", type="text", class="twelve columns")
+              .six.columns
+                label(for="company_name") Company Name
+                input(type="text", name="company_name", id="company_name", class="twelve columns")
+              .twelve.columns
+                label(for="email") Email
+                input(type="email", name="email", id="email", class="twelve columns")
+            .row
+              .twelve.columns
+                label(for="parcel_description") Parcel Description
+                textarea(class="twelve columns", name="parcel_description")
+            .row
+              .four.columns
+                label(for="height") Height
+                input(type="number", name="height", id="height", value="#{$height}", class="twelve columns", disabled)
+              .four.columns
+                label(for="length") Length
+                input(type="number", name="length", id="length", value="#{$length}",class="twelve columns", disabled)
+              .four.columns
+                label(for="width") Width
+                input(type="number", name="width", id="width", value="#{width}", class="twelve columns", disabled)
+            .row
+              .twelve.columns
+                label(for="unit_value") Unit Value
+                input(type="text", name="unit_value", id="unit_value", class="twelve columns")
+            .row
+              .twelve.columns
+                label(for="insurance_value") Insurance Value
+                input(type="text", name="insurance_value", id="insurance_value", class="twelve columns")
+            .row
+              .twelve.columns
+                label(for="total_value") Total Value
+                input(type="text", name="total_value", id="total_value", class="twelve columns")
+            .row
+              .twelve.columns
+                button(type="submit", class="twelve columns button button-primary") Submit

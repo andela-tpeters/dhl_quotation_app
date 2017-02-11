@@ -1,0 +1,86 @@
+!!! 5
+html
+  head
+    title GCL Logistics
+    link(href="https://fonts.googleapis.com/css?family=Arsenal|Lato" rel="stylesheet")
+    link(href="/public/css/normalize.css", rel="stylesheet")
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css", rel="stylesheet")
+    link(href="/public/css/base.min.css", rel="stylesheet")
+  body
+    header
+      .row
+        .twelve.columns
+          .header-content
+            .container
+              .row
+                .two.columns
+                  .logo.twelve.columns
+                .ten.columns
+                  .menu-wrapper.u-pull-right
+                    a(href="http://gc12.globalcorporatelogistics.com", class="button") Home
+              hr
+    .container
+      .row
+        .twelve.columns
+          .content-wrapper
+            .row
+              .twelve.columns
+                h3 New Shipping Request
+            .row
+              .two.columns &nbsp;
+              .eight.columns
+                table.u-full-width
+                  tr
+                    td Customer Name
+                    td #{$customer_name}
+                  tr
+                    td Company Name
+                    td #{$company_name}
+                  tr
+                    td Customer Email
+                    td #{$email}
+                  tr
+                    td Origin Location
+                    td #{$origin_location}
+                  tr
+                    td Destination Location
+                    td #{$destination_location}
+                  tr
+                    td Parcel Dimensions Weight
+                    td #{$weight}
+                  tr
+                    td Parcel Dimensions
+                    td #{$length} x #{$width} x #{$height} (L x W x H)
+                  tr
+                    td Unit Value
+                    td #{$unit_value}
+                  tr
+                    td Insurance Value
+                    td #{$insurance_value}
+                  tr
+                    td Shipping Charge
+                    td #{$total_value}
+                  tr
+                    td Pickup Date
+                    td #{$pickup_date}
+                  tr
+                    td Total Transit Days
+                    td #{$transit_days}
+                  tr
+                    td Delivery Date
+                    td #{$delivery_date}
+                  tr
+                    td Weight Charge
+                    td #{$weight_charge}
+                  tr
+                    td Shipping Charge
+                    td #{$shipping_charge}
+  hr
+    footer
+      .row
+        .twelve.columns
+          .foot-content
+            .container
+              .row
+                .twelve.columns Copyright by Global Corporate Logistics LTD. All rights reserved
+

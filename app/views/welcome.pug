@@ -1,0 +1,66 @@
+extends layouts/base.pug
+block content
+  .row
+    .three.columns &nbsp;
+    .six.columns
+      form(action="/quotation/index", method="POST", class="twelve columns", style="padding: 10px;")
+        .row
+          .one.column &nbsp;
+          .ten.columns
+            .row
+              .six.columns
+                label(for="from") From
+                select(name="quote[0][from]", id="from", class="twelve columns")
+                  option(value="NG") Nigeria
+                  option(value="USA") USA
+              .six.columns
+                label(for="from_city") Origin City
+                input(type="text", name="quote[0][from_city]", id="from_city", class="twelve columns")
+            .row
+              .six.columns
+                label(for="to") To
+                select(name="quote[0][to]", id="to", class="twelve columns")
+                  option(value="NG") Nigeria
+                  option(value="USA") USA
+              .six.columns
+                label(for="to_city") Destination City
+                input(type="text", name="quote[0][to_city]", id="to_city", class="twelve columns")
+            .row
+              .six.columns
+                label(for="weight") Weight
+                input(type="number", name="quote[0][weight]", id="weight", class="twelve columns")
+              .six.columns
+                label(for="weight_unit") Weight Unit
+                //- input(type="text", name="quote[0][weight_unit]", id="weight_unit", class="twelve columns")
+                select(name="quote[0][weight_unit]", id="weight_unit", class="twelve columns")
+                  option(value="KG") Kilograms
+                  option(value="LB") Pounds
+            .row
+              .four.columns
+                label(for="height") Height
+                input(type="number", name="quote[0][height]", id="height", class="twelve columns")
+              .four.columns
+                label(for="length") Length
+                input(type="number", name="quote[0][length]", id="length", class="twelve columns")
+              .four.columns
+                label(for="width") Width
+                input(type="number", name="quote[0][width]", id="width", class="twelve columns")
+              .twelve.columns
+                label(for="dim_unit") Dimensions Unit
+                //- input(type="text", name="quote[0][dim_unit]", id="dim_unit", class="twelve columns")
+                select(name="quote[0][dim_unit]", id="dim_unit",  class="twelve columns")
+                  option(value="CM") Centimetres
+                  option(value="IN") Pounds
+            .row
+              .twelve.columns
+                label(for="no_of_pieces") Number Of Item
+                input(type="number", name="quote[0][no_of_pieces]", id="no_of_pieces", class="twelve columns").row
+              .twelve.columns
+                label(for="payment_country_code") Payment Country Code
+                //- input(type="text", name="quote[0][payment_country_code]", id="payment_country_code", class="twelve columns")
+                select(name="quote[0][payment_country_code]", id="payment_country_code",  class="twelve columns")
+                  option(value="US") US
+                  option(value="GB") GB
+            .row
+              .twelve.columns
+                button(type="submit", class="twelve columns button button-primary") Submit Quote

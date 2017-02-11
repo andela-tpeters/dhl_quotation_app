@@ -1,0 +1,45 @@
+extends layouts/base.pug
+block content
+  .row
+    .three.columns &nbsp;
+    .six.columns
+      table.u-full-width
+        tr
+          td Origin Location
+          td #{$quote->BkgDetails->OriginServiceArea->ServiceAreaCode}
+        tr
+          td Destination Location
+          td #{$quote->BkgDetails->DestinationServiceArea->ServiceAreaCode}
+        tr
+          td Parcel Dimensions Weight
+          td #{$quote->BkgDetails->QtdShp->DimensionalWeight} #{$quote->BkgDetails->QtdShp->WeightUnit}
+        tr
+          td Pickup Date
+          td #{$quote->BkgDetails->QtdShp->PickupDate}
+        tr
+          td Total Transit Days
+          td #{$quote->BkgDetails->QtdShp->TotalTransitDays}
+        tr
+          td Delivery Date
+          td #{$quote->BkgDetails->QtdShp->DeliveryDate}
+        tr
+          td Weight Charge
+          td #{$quote->BkgDetails->QtdShp->WeightCharge} #{$quote->BkgDetails->QtdShp->CurrencyCode}
+        tr
+          td Shipping Charge
+          td #{$quote->BkgDetails->QtdShp->ShippingCharge} #{$quote->BkgDetails->QtdShp->CurrencyCode}
+        tr
+          td(colspan='2')
+            form(action="/quotation/book", method="POST", class="twelve columns")
+              input(type="hidden", class="twelve columns", name="origin_location", value="#{$quote->BkgDetails->OriginServiceArea->ServiceAreaCode}")
+              input(type="hidden", class="twelve columns", name="destination_location", value="#{$quote->BkgDetails->DestinationServiceArea->ServiceAreaCode}")
+              input(type="hidden", class="twelve columns", name="weight", value="#{$quote->BkgDetails->QtdShp->DimensionalWeight} #{$quote->BkgDetails->QtdShp->WeightUnit}")
+              input(type="hidden", class="twelve columns", name="pickup_date", value="#{$quote->BkgDetails->QtdShp->PickupDate}")
+              input(type="hidden", class="twelve columns", name="transit_days", value="#{$quote->BkgDetails->QtdShp->TotalTransitDays}")
+              input(type="hidden", class="twelve columns", name="delivery_date", value="#{$quote->BkgDetails->QtdShp->DeliveryDate}")
+              input(type="hidden", class="twelve columns", name="weight_charge", value="#{$quote->BkgDetails->QtdShp->WeightCharge} #{$quote->BkgDetails->QtdShp->CurrencyCode}")
+              input(type="hidden", class="twelve columns", name="shipping_charge", value="#{$quote->BkgDetails->QtdShp->ShippingCharge} #{$quote->BkgDetails->QtdShp->CurrencyCode}")
+              input(type="hidden", class="twelve columns", name="width", value="#{$width}")
+              input(type="hidden", class="twelve columns", name="height", value="#{$height}")
+              input(type="hidden", class="twelve columns", name="length", value="#{$length}")
+              button(class="button button-primary twelve columns", type="submit") Book
