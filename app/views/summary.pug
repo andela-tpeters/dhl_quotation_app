@@ -1,0 +1,78 @@
+extends layouts/base.pug
+block content
+  - $parcel = $checkout['parcel']
+  - $shippers = $checkout['shippers']
+  - $delivery = $checkout['delivery']
+  - $custom = $checkout['custom']
+  - $sch_pickup = $checkout['sch_pickup']
+  mixin cleanString($val, $section)
+    =ucwords(str_replace('_', " ", $section." ".$val));
+
+  .row
+    .one.columns &nbsp;
+    .ten.columns
+      table.u-full-width
+        caption
+          h2 Checkout Summary
+        tr
+          td Name
+          td=ucwords($checkout['title']." ".$checkout['firstname']." ".$checkout['lastname'])
+        tr
+          td Email
+          td #{$checkout['email']}
+        tr
+          td(colspan="2")
+            h4(style="text-align: center") Parcel Info
+        each val, title in $parcel
+          tr
+            td
+              +cleanString(title, "Parcel")
+            td= val
+        tr
+          td(colspan="2")
+            h4(style="text-align: center") Shipper's Info
+        each val, title in $shippers
+          tr
+            td
+              +cleanString(title, "Shipper's")
+            td= val
+        tr
+          td(colspan="2")
+            h4(style="text-align: center") Receiver's Info
+        each val, title in $delivery
+          tr
+            td
+              +cleanString(title, "Receiver's")}
+            td= val
+        tr
+          td(colspan="2")
+            h4(style="text-align: center") Customs Info
+        each val, title in $custom
+          tr
+            td
+              +cleanString(title, "Custom's")}
+            td= val
+        tr
+          td(colspan="2")
+            h4(style="text-align: center") Pickup Info
+        each val, title in $sch_pickup
+          tr
+            td
+              +cleanString(title, "Pickup's")}
+            td= val
+        tr
+          td(colspan="2")
+            h4(style="text-align: center") Email Sender and Receiver
+        tr
+          td Email From
+          td #{$checkout['mail_from']}
+        tr
+          td Email To
+          td #{$checkout['mail_to']}
+        tr
+          td(colspan='2')
+            form(action="/dhl/pages/mail", method="POST")
+              - $payload = serialize($checkout)
+              input(type="hidden", value="#{$payload}", name="checkout")
+              button.button.button-primary.u-full-width Submit
+

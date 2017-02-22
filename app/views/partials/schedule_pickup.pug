@@ -1,0 +1,73 @@
+button.twelve.columns.button.button-primary(type='button', data-toggle='collapse', data-target='#schedulePickup', aria-expanded='expanded', aria-controls='collapseExample')
+  | Schedule Pickup
+#schedulePickup.collapse
+  .row
+    .twelve.columns
+      div.collapse-container
+        div(style="padding: 10px; background-color: orangered; color: white; text-align: center; font-style: italic; font-weight: bold; margin-bottom: 20px") !!!! This is section is needed only if you wish to change your pickkup location
+        h5 Schedule Pickup
+        section
+          .row
+            .six.columns
+              .row
+                .five.columns
+                  label Contact Name *
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][contact_name]", type="text")
+              .row
+                .five.columns
+                  label Company Name *
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][company_name]", type="text")
+              .row
+                .five.columns
+                  label Address 1 *
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][address_1]", type="text")
+              .row
+                .five.columns
+                  label Postal Code *
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][postal_code]", type="text")
+              .row
+                .five.columns
+                  label City *
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][city]", type="text")
+              .row
+                .five.columns
+                  label Suburb
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][suburb]", type="text")
+              .row
+                .five.columns
+                  label State Province
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][state]", type="text")
+            .six.columns
+              .row
+                .five.columns
+                  label Phone
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][phone_no]", type="text")
+              .row
+                .five.columns
+                  label Location Type
+                .seven.columns
+                  select.twelve.columns(name="checkout[sch_pickup][location]")
+                    option(value="business") Business
+              .row
+                .five.columns
+                  label Package(s) Location *
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][suburb]", type="text")
+              .row
+                .five.columns
+                  label Instructions
+                .seven.columns
+                  textarea.twelve.columns(name="checkout[sch_pickup][instructions]")
+              .row
+                .five.columns
+                  label Pickup Date and Time
+                .seven.columns
+                  input.twelve.columns(name="checkout[sch_pickup][pickup_date]", type="datetime-local")

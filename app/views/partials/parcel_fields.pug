@@ -1,0 +1,60 @@
+button.twelve.columns.button.button-primary(type='button', data-toggle='collapse', data-target='#parcelDetails', aria-expanded='false', aria-controls='collapseExample')
+  | Parcel Details
+#parcelDetails.collapse
+  .row
+    .twelve.columns
+      .collapse-container
+        h5 Parcel Details
+        section
+          .row
+            .six.columns
+              .row
+                .two.columns
+                  label.twelve.columns Content
+                .ten.columns
+                  input.twelve.columns(type="text", required="required", name="checkout[parcel][content]")
+            .six.columns
+              .row
+                .two.columns
+                  label.twelve.columns Value £
+                .ten.columns
+                  input.twelve.columns(type="text", required="required", name="checkout[parcel][value]")
+                  input(type="hidden", value="#{$quote['no_of_pieces']}", name="checkout[parcel][pieces]")
+                  input(type="hidden", value="#{$quote['dim_unit']}", name="checkout[parcel][dimensions_unit]")
+                  input(type="hidden", value="#{$quote['weight_unit']}", name="checkout[parcel][weight_unit]")
+          .row
+            .three.columns
+              .row
+                .six.columns
+                  label.twelve.columns Weight
+                .six.columns
+                  input.twelve.columns(name="checkout[parcel][weight]", type="number", required="required", value="#{$quote['weight']}", readonly='readonly')
+            .three.columns
+                  .row
+                    .six.columns
+                      label.twelve.columns Length
+                    .six.columns
+                      input.twelve.columns(name="checkout[parcel][length]", type="number", required="required", value="#{$quote['length']}", readonly='readonly')
+            .three.columns
+                  .row
+                    .six.columns
+                      label.twelve.columns Width
+                    .six.columns
+                      input.twelve.columns(name="checkout[parcel][width]",type="number", required="required", value="#{$quote['width']}", readonly='readonly')
+            .three.columns
+                  .row
+                    .six.columns
+                      label.twelve.columns Height
+                    .six.columns
+                      input.twelve.columns(name="checkout[parcel][height]",type="number", required="required", value="#{quote['height']}", readonly='readonly')
+          hr
+          section
+            .row
+              .twelve.columns
+                p(style="font-size: 16px;") I have read and agree to the prohibited &amp; restricted items list &nbsp;
+                  input(type="checkbox", name="checkout[parcel][agree]", value="true", required="required")
+          hr
+          section
+            .row
+              .three.columns.u-pull-right
+                button.button.button-primary Next

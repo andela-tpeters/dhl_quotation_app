@@ -1,43 +1,33 @@
-// $('#fromThings').selectize({
-//     valueField: 'name',
-//     labelField: 'name',
-//     searchField: 'name',
-//     options: [],
-//     create: false,
-//     render: {
-//         option: function(item, escape) {
-//             var actors = [];
-//             for (var i = 0, n = item.abridged_cast.length; i < n; i++) {
-//                 actors.push('<span>' + escape(item.abridged_cast[i].name) + '</span>');
-//             }
-
-//             return '<div>' +
-//                 '<img src="' + escape(item.posters.thumbnail) + '" alt="">' +
-//                 '<span class="title">' +
-//                     '<span class="name">' + escape(item.title) + '</span>' +
-//                 '</span>' +
-//                 '<span class="description">' + escape(item.synopsis || 'No synopsis available at this time.') + '</span>' +
-//                 '<span class="actors">' + (actors.length ? 'Starring ' + actors.join(', ') : 'Actors unavailable') + '</span>' +
-//             '</div>';
+// var form = $("#example-form");
+// form.validate({
+//     errorPlacement: function errorPlacement(error, element) { element.before(error); },
+//     rules: {
+//         confirm: {
+//             equalTo: "#password"
 //         }
-//     },
-//     load: function(query, callback) {
-//         if (!query.length) return callback();
-//         $.ajax({
-//             url: 'https://restcountries.eu/rest/v1/all',
-//             type: 'GET',
-//             dataType: 'jsonp',
-//             data: {
-//                 q: query,
-//                 page_limit: 10
-//             },
-//             error: function() {
-//                 callback();
-//             },
-//             success: function(res) {
-//                 callback(res.movies);
-//             }
-//         });
 //     }
 // });
-// $("select#fromThings").selectize();
+// form.children("div").steps({
+//     headerTag: "h3",
+//     bodyTag: "section",
+//     transitionEffect: "slideLeft",
+//     onStepChanging: function(event, currentIndex, newIndex) {
+//         form.validate().settings.ignore = ":disabled,:hidden";
+//         return form.valid();
+//     },
+//     onFinishing: function(event, currentIndex) {
+//         form.validate().settings.ignore = ":disabled";
+//         return form.valid();
+//     },
+//     onFinished: function(event, currentIndex) {
+//         alert("Submitted!");
+//     }
+// });
+
+$(document).ready(function(){
+	$('#example-form > button').click(function() {
+		var divTarget = this.attributes['data-target'].value;
+		$('#example-form > div.collapse').removeClass('in');
+		$(divTarget).toggleClass('in');
+	});
+});

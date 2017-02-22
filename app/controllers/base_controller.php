@@ -30,8 +30,8 @@ class BaseController
 		return $this->engine->render($view_file, $variables);
 	}
 
-	public function not_found($variables = []) {
-		return $this->engine->render($this->get_file('404'));
+	public function not_found($variables = ['message'=>"Error path does not exists!!! Check the url and try again"]) {
+		return $this->engine->render($this->get_file('404'), $variables);
 	}
 
 	private function get_file($name) {

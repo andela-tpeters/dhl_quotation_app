@@ -1,0 +1,50 @@
+extends layouts/base.pug
+block content
+	.row
+		.four.columns
+      h4 Parcel Details
+      hr
+      table.u-full-width
+        tr
+          td DHL Product
+          td #{$quote['product_name']}
+        tr
+          td Origin Location
+          td #{$quote['from']} - #{$quote['origin_location']}
+        tr
+          td Origin Zip Code
+          td #{$quote['from_postal_code']}
+        tr
+          td Destination Location
+          td #{$quote['to']} - #{$quote['destination_location']}
+        tr
+          td Destination Zip Code
+          td #{$quote['to_postal_code']}
+        tr
+          td Parcel Dimensions Weight
+          td #{$quote['weight']} #{$quote['weight_unit']}
+        tr
+          td Parcel Dimensions
+          td #{$quote['length']} X #{$quote['width']} X #{$quote['height']} #{$quote['dim_unit']}
+        tr
+          td No of Pieces
+          td #{$quote['no_of_pieces']}
+  	.eight.columns
+      .row
+        .twelve.columns
+          h4 Checkout
+          hr
+  	      .row
+            form.twelve.columns#example-form(action='/dhl/pages/summary', method="GET", style="border: 1px solid #efefef; padding: 30px 20px; background-color: #f8f8f8")
+            //- form.twelve.columns#example-form(action='/pages/summary', method="GET", style="border: 1px solid #efefef; padding: 30px 20px; background-color: #f8f8f8")
+    	        include partials/personal_fields.pug
+    	        include partials/parcel_fields.pug
+    	        include partials/protect_parcel_fields.pug
+    	        include partials/shippers_details_fields.pug
+    	        include partials/delivery_details_fields.pug
+    	        include partials/custom_details_fields.pug
+              include partials/schedule_pickup.pug
+    	        include partials/where_to_mail.pug
+      	      .row
+      	      	.six.columns.u-pull-right
+      	      		button.u-pull-right.button(type="submit", style="background-color: white") Submit

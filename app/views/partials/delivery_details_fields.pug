@@ -1,0 +1,64 @@
+button.twelve.columns.button.button-primary(type='button', data-toggle='collapse', data-target='#deliveryDetails', aria-expanded='false', aria-controls='collapseExample')
+  | Delivery Details
+#deliveryDetails.collapse
+  .row
+    .twelve.columns
+      .collapse-container
+        h5 Delivery Details
+        section
+          .row
+            .three.columns
+              label Contact Name*
+            .eight.columns
+              input.twelve.columns(type="text", required="required", name="checkout[delivery][name]")
+          .row
+            .three.columns
+              label Company
+            .eight.columns
+              input.twelve.columns(type="text", name="checkout[delivery][company]")
+          .row
+            .three.columns
+              label Address 1*
+            .eight.columns
+              textarea.twelve.columns(required="required", name="checkout[delivery][address_1]")
+          .row
+            .three.columns
+              label Address 2
+            .eight.columns
+              textarea.twelve.columns(name="checkout[delivery][address_2]")
+          .row
+            .three.columns
+              label Address 3
+            .eight.columns
+              textarea.twelve.columns(name="checkout[delivery][address_3]")
+          .row
+            .three.columns
+              label City/Town*
+            .eight.columns
+              input.twelve.columns(type="text", required="required", name="checkout[delivery][city]")
+          .row
+            .three.columns
+              label Postcode*
+            .eight.columns
+              input.twelve.columns(type="text", required="required", value="#{$quote['to_postal_code']}", name="checkout[delivery][postal_code]", readonly='readonly')
+          .row
+            .three.columns
+              label Country*
+            .eight.columns
+              input.twelve.columns(type="text", required="required", value="#{$quote['to']}", name="checkout[delivery][country]", readonly='readonly')
+          .row
+            .three.columns
+              label Email*
+            .eight.columns
+              input.twelve.columns(type="email", required="required", name="checkout[delivery][email]")
+          .row
+            .three.columns
+              label Mobile*
+            .eight.columns
+              .row
+                //- .two.columns
+                //-   input.twelve.columns(type="number", maxlength="3", required="required", name="checkout[delivery][phone_code]")
+                .ten.columns
+                  input.twelve.columns(type="tel", pattern="\+?\d{1,3}-\d{3}-\d{3}-\d{4}$", required="required", name="checkout[delivery][phone_no]", title="Format: +xxx-xxx-xxx-xxxx")
+
+                  

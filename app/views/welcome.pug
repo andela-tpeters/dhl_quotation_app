@@ -11,20 +11,22 @@ block content
               .six.columns
                 label(for="from") From
                 select(name="quote[0][from]", id="from", class="twelve columns")
+                  option(value="GB") UK
                   option(value="NG") Nigeria
-                  option(value="USA") USA
+                  option(value="US") USA
               .six.columns
-                label(for="from_city") Origin City
-                input(type="text", name="quote[0][from_city]", id="from_city", class="twelve columns")
+                label(for="from_postal_code") City Zip Code
+                input(type="text", name="quote[0][from_postal_code]", id="from_postal_code", class="twelve columns")
             .row
               .six.columns
                 label(for="to") To
                 select(name="quote[0][to]", id="to", class="twelve columns")
+                  option(value="GB") UK
                   option(value="NG") Nigeria
-                  option(value="USA") USA
+                  option(value="US") USA
               .six.columns
-                label(for="to_city") Destination City
-                input(type="text", name="quote[0][to_city]", id="to_city", class="twelve columns")
+                label(for="to_postal_code") Zip Code
+                input(type="text", name="quote[0][to_postal_code]", id="to_postal_code", class="twelve columns")
             .row
               .six.columns
                 label(for="weight") Weight
@@ -50,7 +52,7 @@ block content
                 //- input(type="text", name="quote[0][dim_unit]", id="dim_unit", class="twelve columns")
                 select(name="quote[0][dim_unit]", id="dim_unit",  class="twelve columns")
                   option(value="CM") Centimetres
-                  option(value="IN") Pounds
+                  option(value="IN") Inches
             .row
               .twelve.columns
                 label(for="no_of_pieces") Number Of Item

@@ -1,0 +1,134 @@
+button.twelve.columns.button.button-primary(type='button', data-toggle='collapse', data-target='#customDetails', aria-expanded='false', aria-controls='collapseExample')
+  | Custom Details
+#customDetails.collapse
+  .row
+    .twelve.columns
+      div.collapse-container
+        h5 Custom Details
+        section
+          .row
+            .three.columns
+              label Invoice Template
+            .nine.columns
+              select.twelve.columns(name="checkout[custom][template]")
+                option(value="none") None
+          .row
+            .six.columns
+              .row
+                .five.columns
+                  label Invoice type
+                .seven.columns
+                  select.twelve.columns(name="checkout[custom][type]")
+                    option(value="none") None
+              .row
+                .five.columns
+                  label Invoice Number
+                .seven.columns
+                  input.twelve.columns(name="checkout[custom][number]", type="text")
+              .row
+                .five.columns
+                  label Terms of Trade
+                .seven.columns
+                  select.twelve.columns(name="checkout[custom]terms_of_trade")
+                    option(value="none") None
+              .row
+                .five.columns
+                  label Receiver of VAT/Tax ID
+                .seven.columns
+                  input.twelve.columns(name="checkout[custom][receiver_tax_id]", type="text")
+            .six.columns
+              .row
+                .five.columns
+                  label Reasons for Export
+                .seven.columns
+                  select.twelve.columns(name="checkout[custom][export_reasons]")
+                    option(value="none") None
+              .row
+                .five.columns
+                  label Term of Payment
+                .seven.columns
+                  input.twelve.columns(name="checkout[custom][payment_terms]", type="text")
+              .row
+                .five.columns
+                  label Type of Export
+                .seven.columns
+                  select.twelve.columns(name="checkout[custom][export_type]")
+                    option(value="none") None
+              .row
+                .five.columns
+                  label Named Destination
+                .seven.columns
+                  input.twelve.columns(name="checkout[custom][named_destination]", type="text")
+  hr
+  .row
+    .twelve.columns
+      div.collapse-container
+        .row
+          .six.columns
+            .row
+              .three.columns
+                label Other Remarks
+              .nine.columns
+                textarea.twelve.columns(name="checkout[custom][commodity_remarks]")
+          .six.columns
+            .row
+              .four.columns
+                label Other Charges
+              .eight.columns
+                input.nine.columns(type="number", name="checkout[custom][other_charges]")
+                p.three.columns GBP
+
+  hr
+  .row
+    .twelve.columns
+      div.collapse-container
+        h5 Commodity Details
+        section
+          .row
+            .six.columns
+              .row
+                .three.columns
+                  label Description
+                .nine.columns
+                  textarea.twelve.columns(name="checkout[custom][commodity_description]")
+              .row
+                .five.columns
+                  label Origin Country
+                .seven.columns
+                  select.twelve.columns(name="checkout[custom][commodity_origin]")
+                    option(value="none") None
+              .row
+                .five.columns
+                  label Quantity
+                .seven.columns
+                  input.twelve.columns(name="checkout[custom][commodity_quantity]", type="number", value="#{$quote['no_of_pieces']}")
+              .row
+                .five.columns
+                  label Unit of measure
+                .seven.columns
+                  select.twelve.columns(name="checkout[custom][commodity_unit_of_measure]")
+                    option(value="none") Pieces
+            .six.columns
+              .row
+                .five.columns
+                  label Unit Value
+                .seven.columns
+                  input.ten.columns(name="checkout[custom][commodity_unit_value]", type="number")
+                  p.two.columns GBP
+              .row
+                .five.columns
+                  label Net Weight
+                .seven.columns
+                  input.ten.columns(name="checkout[custom][commodity_net_weight]", type="number")
+                  p.two.columns KG
+              .row
+                .five.columns
+                  label Gross Weight
+                .seven.columns
+                  input.ten.columns(name="checkout[custom][commodity_gross_weight]", type="number")
+                  p.two.columns KG
+              .row
+                .five.columns
+                  label Commodity Code
+                .seven.columns
+                  input.twelve.columns(name="checkout[custom][commodity_code]", type="text")

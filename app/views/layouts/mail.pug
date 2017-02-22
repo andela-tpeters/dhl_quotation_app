@@ -7,80 +7,72 @@ html
     link(href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css", rel="stylesheet")
     link(href="/public/css/base.min.css", rel="stylesheet")
   body
-    header
-      .row
-        .twelve.columns
-          .header-content
-            .container
-              .row
-                .two.columns
-                  .logo.twelve.columns
-                .ten.columns
-                  .menu-wrapper.u-pull-right
-                    a(href="http://gc12.globalcorporatelogistics.com", class="button") Home
-              hr
+    - $parcel = $checkout['parcel']
+    - $shippers = $checkout['shippers']
+    - $delivery = $checkout['delivery']
+    - $custom = $checkout['custom']
+    - $sch_pickup = $checkout['sch_pickup']
+    mixin cleanString($val, $section)
+      =ucwords(str_replace('_', " ", $section." ".$val));
     .container
       .row
-        .twelve.columns
-          .content-wrapper
-            .row
-              .twelve.columns
-                h3 New Shipping Request
-            .row
-              .two.columns &nbsp;
-              .eight.columns
-                table.u-full-width
-                  tr
-                    td Customer Name
-                    td #{$customer_name}
-                  tr
-                    td Company Name
-                    td #{$company_name}
-                  tr
-                    td Customer Email
-                    td #{$email}
-                  tr
-                    td Origin Location
-                    td #{$origin_location}
-                  tr
-                    td Destination Location
-                    td #{$destination_location}
-                  tr
-                    td Parcel Dimensions Weight
-                    td #{$weight}
-                  tr
-                    td Parcel Dimensions
-                    td #{$length} x #{$width} x #{$height} (L x W x H)
-                  tr
-                    td Unit Value
-                    td #{$unit_value}
-                  tr
-                    td Insurance Value
-                    td #{$insurance_value}
-                  tr
-                    td Shipping Charge
-                    td #{$total_value}
-                  tr
-                    td Pickup Date
-                    td #{$pickup_date}
-                  tr
-                    td Total Transit Days
-                    td #{$transit_days}
-                  tr
-                    td Delivery Date
-                    td #{$delivery_date}
-                  tr
-                    td Weight Charge
-                    td #{$weight_charge}
-                  tr
-                    td Shipping Charge
-                    td #{$shipping_charge}
-  hr
-    footer
-      .row
-        .twelve.columns
-          .foot-content
-            .container
-              .row
-                .twelve.columns Copyright by Global Corporate Logistics LTD. All rights reserved
+        .one.columns &nbsp;
+        .ten.columns
+          table.u-full-width
+            caption
+              h2 Checkout Summary
+            tr
+              td Name
+              td=ucwords($checkout['title']." ".$checkout['firstname']." ".$checkout['lastname'])
+            tr
+              td Email
+              td #{$checkout['email']}
+            tr
+              td(colspan="2")
+                h4(style="text-align: center") Parcel Info
+            each val, title in $parcel
+              tr
+                td
+                  +cleanString(title, "Parcel")
+                td= val
+            tr
+              td(colspan="2")
+                h4(style="text-align: center") Shipper's Info
+            each val, title in $shippers
+              tr
+                td
+                  +cleanString(title, "Shipper's")
+                td= val
+            tr
+              td(colspan="2")
+                h4(style="text-align: center") Receiver's Info
+            each val, title in $delivery
+              tr
+                td
+                  +cleanString(title, "Receiver's")}
+                td= val
+            tr
+              td(colspan="2")
+                h4(style="text-align: center") Customs Info
+            each val, title in $custom
+              tr
+                td
+                  +cleanString(title, "Custom's")}
+                td= val
+            tr
+              td(colspan="2")
+                h4(style="text-align: center") Pickup Info
+            each val, title in $sch_pickup
+              tr
+                td
+                  +cleanString(title, "Pickup's")}
+                td= val
+    hr
+      footer
+        .row
+          .twelve.columns
+            .foot-content
+              .container
+                .row
+                  .twelve.columns Copyright by Global Corporate Logistics LTD. All rights reserved
 

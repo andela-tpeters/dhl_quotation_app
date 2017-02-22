@@ -1,45 +1,80 @@
 extends layouts/base.pug
 block content
   .row
-    .three.columns &nbsp;
-    .six.columns
+    .four.columns
+      h4 Parcel Description
+      hr
       table.u-full-width
         tr
           td Origin Location
-          td #{$quote->BkgDetails->OriginServiceArea->ServiceAreaCode}
+          td #{$quote_params['from']} - #{$quote->BkgDetails->OriginServiceArea->ServiceAreaCode}
+        tr
+          td Origin Zip Code
+          td #{$quote_params['from_postal_code']}
         tr
           td Destination Location
-          td #{$quote->BkgDetails->DestinationServiceArea->ServiceAreaCode}
+          td #{$quote_params['to']} - #{$quote->BkgDetails->DestinationServiceArea->ServiceAreaCode}
+        tr
+          td Destination Zip Code
+          td #{$quote_params['to_postal_code']}
         tr
           td Parcel Dimensions Weight
           td #{$quote->BkgDetails->QtdShp->DimensionalWeight} #{$quote->BkgDetails->QtdShp->WeightUnit}
         tr
-          td Pickup Date
-          td #{$quote->BkgDetails->QtdShp->PickupDate}
+          td Parcel Dimensions
+          td #{$quote_params['length']} X #{$quote_params['width']} X #{$quote_params['height']} #{$quote_params['dim_unit']}
         tr
-          td Total Transit Days
-          td #{$quote->BkgDetails->QtdShp->TotalTransitDays}
-        tr
-          td Delivery Date
-          td #{$quote->BkgDetails->QtdShp->DeliveryDate}
-        tr
-          td Weight Charge
-          td #{$quote->BkgDetails->QtdShp->WeightCharge} #{$quote->BkgDetails->QtdShp->CurrencyCode}
-        tr
-          td Shipping Charge
-          td #{$quote->BkgDetails->QtdShp->ShippingCharge} #{$quote->BkgDetails->QtdShp->CurrencyCode}
-        tr
-          td(colspan='2')
-            form(action="/dhl/quotation/book", method="POST", class="twelve columns")
-              input(type="hidden", class="twelve columns", name="origin_location", value="#{$quote->BkgDetails->OriginServiceArea->ServiceAreaCode}")
-              input(type="hidden", class="twelve columns", name="destination_location", value="#{$quote->BkgDetails->DestinationServiceArea->ServiceAreaCode}")
-              input(type="hidden", class="twelve columns", name="weight", value="#{$quote->BkgDetails->QtdShp->DimensionalWeight} #{$quote->BkgDetails->QtdShp->WeightUnit}")
-              input(type="hidden", class="twelve columns", name="pickup_date", value="#{$quote->BkgDetails->QtdShp->PickupDate}")
-              input(type="hidden", class="twelve columns", name="transit_days", value="#{$quote->BkgDetails->QtdShp->TotalTransitDays}")
-              input(type="hidden", class="twelve columns", name="delivery_date", value="#{$quote->BkgDetails->QtdShp->DeliveryDate}")
-              input(type="hidden", class="twelve columns", name="weight_charge", value="#{$quote->BkgDetails->QtdShp->WeightCharge} #{$quote->BkgDetails->QtdShp->CurrencyCode}")
-              input(type="hidden", class="twelve columns", name="shipping_charge", value="#{$quote->BkgDetails->QtdShp->ShippingCharge} #{$quote->BkgDetails->QtdShp->CurrencyCode}")
-              input(type="hidden", class="twelve columns", name="width", value="#{$width}")
-              input(type="hidden", class="twelve columns", name="height", value="#{$height}")
-              input(type="hidden", class="twelve columns", name="length", value="#{$length}")
-              button(class="button button-primary twelve columns", type="submit") Book
+          td No of Pieces
+          td #{$quote_params['no_of_pieces']}
+    .six.columns
+      h4 DHL Products
+      hr
+      - $index = 0
+      while $index < count($quote->BkgDetails->QtdShp)
+        unless $quote->BkgDetails->QtdShp[$index]->WeightCharge == ''
+          .row
+            .twelve.columns
+              table.u-full-width
+                caption
+                  h4(style="background-color: #ececec; padding-top: 20px; padding-bottom: 20px;") #{$quote->BkgDetails->QtdShp[$index]->ProductShortName}
+                tr
+                  td Pickup Date
+                  td #{$quote->BkgDetails->QtdShp[$index]->PickupDate}
+                tr
+                  td Total Transit Days
+                  td.
+                    #{$quote->BkgDetails->QtdShp[$index]->TotalTransitDays} day(s) delivery
+                tr
+                  td Delivery Date
+                  td #{$quote->BkgDetails->QtdShp[$index]->DeliveryDate}
+                tr
+                  td Weight Charge
+                  td #{$quote->BkgDetails->QtdShp[$index]->WeightCharge} #{$quote->BkgDetails->QtdShp[$index]->CurrencyCode}
+                tr
+                  td Shipping Charge
+                  td #{$quote->BkgDetails->QtdShp[$index]->ShippingCharge} #{$quote->BkgDetails->QtdShp[$index]->CurrencyCode}
+                tr
+                  td(colspan='2')
+                    form(action="/dhl/pages/checkout", method="POST", class="twelve columns")
+                      input(type="hidden", class="twelve columns", name="origin_location", value="#{$quote->BkgDetails->OriginServiceArea->ServiceAreaCode}")
+                      input(type="hidden", class="twelve columns", name="destination_location", value="#{$quote->BkgDetails->DestinationServiceArea->ServiceAreaCode}")
+                      input(type="hidden", class="twelve columns", name="weight", value="#{$quote->BkgDetails->QtdShp->DimensionalWeight}")
+                      input(type="hidden", class="twelve columns", name="weight_unit", value="#{$quote->BkgDetails->QtdShp->WeightUnit}")
+                      input(type="hidden", class="twelve columns", name="product_name", value="#{$quote->BkgDetails->QtdShp[$index]->ProductShortName}")
+                      input(type="hidden", class="twelve columns", name="pickup_date", value="#{$quote->BkgDetails->QtdShp[$index]->PickupDate}")
+                      input(type="hidden", class="twelve columns", name="transit_days", value="#{$quote->BkgDetails->QtdShp[$index]->TotalTransitDays}")
+                      input(type="hidden", class="twelve columns", name="delivery_date", value="#{$quote->BkgDetails->QtdShp[$index]->DeliveryDate}")
+                      input(type="hidden", class="twelve columns", name="weight_charge", value="#{$quote->BkgDetails->QtdShp[$index]->WeightCharge} #{$quote->BkgDetails->QtdShp[$index]->CurrencyCode}")
+                      input(type="hidden", class="twelve columns", name="currency_code", value="#{$quote->BkgDetails->QtdShp[$index]->CurrencyCode}")
+                      input(type="hidden", class="twelve columns", name="shipping_charge", value="#{$quote->BkgDetails->QtdShp[$index]->ShippingCharge}")
+                      input(type="hidden", class="twelve columns", name="width", value="#{$quote_params['width']}")
+                      input(type="hidden", class="twelve columns", name="height", value="#{$quote_params['height']}")
+                      input(type="hidden", class="twelve columns", name="length", value="#{$quote_params['length']}")
+                      input(type="hidden", class="twelve columns", name="from_postal_code", value="#{$quote_params['from_postal_code']}")
+                      input(type="hidden", class="twelve columns", name="to_postal_code", value="#{$quote_params['to_postal_code']}")
+                      input(type="hidden", class="twelve columns", name="from", value="#{$quote_params['from']}")
+                      input(type="hidden", class="twelve columns", name="to", value="#{$quote_params['to']}")
+                      input(type="hidden", class="twelve columns", name="no_of_pieces", value="#{$quote_params['no_of_pieces']}")
+                      input(type="hidden", class="twelve columns", name="dim_unit", value="#{$quote_params['dim_unit']}")
+                      button(class="button button-primary twelve columns", type="submit") Buy this service
+        - $index++

@@ -1,0 +1,18 @@
+button.twelve.columns.button.button-primary(type='button', data-toggle='collapse', data-target='#otherEmails', aria-expanded='expanded', aria-controls='collapseExample')
+  | Mail to Details
+#otherEmails.collapse
+  .row
+    .twelve.columns
+      div.collapse-container
+        h5 Mail To
+        section
+          .row
+            .two.columns
+              label.twelve.columns From
+            .eight.columns
+              input.twelve.columns.required(name="checkout[mail_from]", required="required", type="email")
+          .row
+            .two.columns
+              label.twelve.columns To
+            .eight.columns
+              input.twelve.columns.required(name="checkout[mail_to]", type='email', required="required")

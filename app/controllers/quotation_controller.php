@@ -13,10 +13,15 @@ class QuotationController extends BaseController
 	public function postIndex($params) {
 		$info = $params["quote"][0];
 		$xml = $this->getQuote($info);
+
 		if(isset($xml->Response->Status) || isset($xml->Response->Note)) {
 			return $this->render('404',['message'=>$xml->Response->Status->Condition->ConditionData]);
 		}
-		return $this->render('quotations', ['quote'=> $xml->GetQuoteResponse, 'width'=>$info['width'], 'height'=>$info['height'], 'length' => $info['length']]);
+
+		if(isset($xml->GetQuoteResponse->Status) || isset($xml->GetQuoteResponse->Note)) {
+			return $this->render('404',['message'=>$xml->GetQuoteResponse->Note->Condition->ConditionData]);
+		}
+		return $this->render('quotations', ['quote'=> $xml->GetQuoteResponse, 'quote_params'=>$info]);
 	}
 
 	public function postBook($params) {
@@ -24,11 +29,6 @@ class QuotationController extends BaseController
 	}
 
 	public function postMail($params) {
-		$headers = [];
-		$headers[] = 'MIME-Version: 1.0';
-		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-		$headers[] = 'From: New Shipping <tijesunimi48@gmail.com>';
-		return mail('Tijesunimi Peters <tijesunimi48@gmail.com>','New Shipping', $this->render('layouts/mail', $params), implode("\r\n",$headers));
 	}
 
 	private function buildMail($params) {
@@ -61,9 +61,9 @@ class QuotationController extends BaseController
 		$piece = $this->buildPiece($req, 1);
 		$q->BkgDetails->addPiece($piece);
 		$q->From->CountryCode = $req['from'];
-		$q->From->City = $req['from_city'];
+		$q->From->Postalcode = $req['from_postal_code'];
 		$q->To->CountryCode = $req['to'];
-		$q->To->City = $req['to_city'];
+		$q->To->Postalcode = $req['to_postal_code'];
 
 		$q->BkgDetails->ReadyTime = 'PT10H21M';
 		$q->BkgDetails->ReadyTimeGMTOffset = date('P');

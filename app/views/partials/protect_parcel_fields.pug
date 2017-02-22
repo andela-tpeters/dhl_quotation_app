@@ -1,0 +1,27 @@
+button.twelve.columns.button.button-primary(type='button', data-toggle='collapse', data-target='#protectParcel', aria-expanded='false', aria-controls='collapseExample')
+  | Protect Parcel
+#protectParcel.collapse
+  .row
+    .twelve.columns
+      div.collapse-container
+        h5 Protect This Item
+        section
+          .row
+            .twelve.columns
+              div.twelve.columns(style="background-color: black; color: white; text-align: center; padding: 10px").
+                You can protect your parcel up to the value of £5,000.00 - Fill in the value above to get a quote
+          .row(style="padding: 20px 20px")
+            .six.columns
+              input(type="radio", value="yes", name="checkout[parcel][protect_parcel]", required="required")
+              span &nbsp; Yes, Protect my parcel
+            .six.columns
+              input(type="radio", value="no", name="checkout[parcel][protect_parcel]", required="required")
+              span &nbsp; No, I Don't Want To Protect My Parcel
+          .row
+            .twelve.columns
+              p(style="color: red; background-color: #e5e5e5; padding: 10px; text-align: center") We Recommend You To Please Protect Your Parcel &amp; Prevent It From Damaging!!!!
+  hr
+  section
+    .row
+      .three.columns.u-pull-right
+        button.button.button-primary Next

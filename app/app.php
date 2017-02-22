@@ -18,8 +18,10 @@ class App
 
 	public function response() {
 		list($klass, $method) = $this->path_parts;
-		
+
+
 		if(method_exists($klass, $method)) {
+			
 			$klass_method = array($klass, $method);
 			if(is_callable($klass_method, true)) {
 				echo call_user_func($klass_method, $_REQUEST);
