@@ -19,6 +19,7 @@ class PagesController extends BaseController
 	}
 
 	public function postMail($params) {
+		dd(unserialize($params['checkout']));
 		$value = unserialize($params['checkout']);
 		$headers = [];
 		$headers[] = 'MIME-Version: 1.0';
