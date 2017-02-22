@@ -24,7 +24,8 @@ class PagesController extends BaseController
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset=UTF-8';
 		$headers[] = 'From: New Shipping <noreply@gcl.com>';
-		$to = $value['mail_from'].", ". $value['mail_to'];
+		$headers[] = 'CC: '. $value['mail_to'] .'noreply@gcl.com';
+		$to = $value['mail_from'];
 		if(mail($to,'New Shipping', $this->render('layouts/mail', $value), implode("\r\n",$headers))) {
 			return $this->render('404', ['message'=>"Thank you for using our service;\nAn email has been sent to you"]);
 		} else {
