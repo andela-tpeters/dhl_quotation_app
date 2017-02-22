@@ -36,8 +36,37 @@ block content
           hr
   	      .row
             form.twelve.columns#example-form(action='/dhl/pages/summary', method="GET", style="border: 1px solid #efefef; padding: 30px 20px; background-color: #f8f8f8")
-            //- form.twelve.columns#example-form(action='/pages/summary', method="GET", style="border: 1px solid #efefef; padding: 30px 20px; background-color: #f8f8f8")
-    	        include partials/personal_fields.pug
+    	        //- include partials/personal_fields.pug
+              button.twelve.columns.button.button-primary(type='button', data-toggle='collapse', data-target='#personalDetails', aria-expanded='expanded', aria-controls='collapseExample')
+                | Personal Details
+              #personalDetails.collapse.in
+                .row
+                  .twelve.columns
+                    div.collapse-container
+                      h5 My Details
+                      section
+                        .row
+                          .two.columns
+                            label.twelve.columns Name *
+                          .three.columns
+                            select.twelve.columns.required(name="checkout[title]", required="required")
+                              option(value="mr") Mr
+                              option(value="mrs") Mrs
+                              option(value="dr") Dr
+                          .three.columns
+                            input.twelve.columns.required(name="checkout[firstname]", type='text', required="required")
+                          .three.columns
+                            input.twelve.columns.required(name="checkout[lastname]", type='text', required="required")
+                        .row
+                          .two.columns
+                            label.twelve.columns Email *
+                          .eight.columns
+                            input.twelve.columns.required(name="checkout[email]", type='text', required="required")
+                      hr
+                      section
+                        .row
+                          .three.columns.u-pull-right
+                            button.button.button-primary(type='button', data-toggle='collapse', data-target='#parcelDetails', aria-expanded='expanded', aria-controls='collapseExample') Next
     	        include partials/parcel_fields.pug
     	        include partials/protect_parcel_fields.pug
     	        include partials/shippers_details_fields.pug
