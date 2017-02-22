@@ -14,8 +14,7 @@ class PagesController extends BaseController
 		return $this->render('checkout', ['quote' => $params]);
 	}
 
-	public function getSummary($params) {
-		// dd($params);
+	public function postSummary($params) {
 		return $this->render('summary', ['checkout'=> $params['checkout']]);
 	}
 
