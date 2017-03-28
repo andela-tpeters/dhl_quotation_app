@@ -4,10 +4,10 @@ if(!defined('BASEDIR')) {
 	define("BASEDIR", __DIR__."/");
 }
 
-// $_SERVER["ENV"] = "development";
 
 require __DIR__ . '/vendor/autoload.php';
 use App\App;
+
 
 $dhl = new App();
 
@@ -19,9 +19,6 @@ function dd($val) {
 	die();
 }
 
-// dd($_SERVER);
-
-// if(isset($_SERVER['']))
 
 $request_path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
 // $request_path = $_SERVER['PATH_INFO'];

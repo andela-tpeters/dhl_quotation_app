@@ -7,7 +7,8 @@ namespace App\Controllers;
 class PagesController extends BaseController
 {
 	public function getIndex() {
-		return $this->render('welcome');
+		$states = json_decode(file_get_contents("http://locationsng-api.herokuapp.com/api/v1/states"));
+		return $this->render('welcome', ['states' => $states]);
 	}
 
 	public function postCheckout($params) {

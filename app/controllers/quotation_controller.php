@@ -12,8 +12,9 @@ class QuotationController extends BaseController
 {
 	public function postIndex($params) {
 		$info = $params["quote"][0];
+		// dd($info);
 		$xml = $this->getQuote($info);
-
+		// dd($xml);
 		if(isset($xml->Response->Status) || isset($xml->Response->Note)) {
 			return $this->render('404',['message'=>$xml->Response->Status->Condition->ConditionData]);
 		}
@@ -61,9 +62,11 @@ class QuotationController extends BaseController
 		$piece = $this->buildPiece($req, 1);
 		$q->BkgDetails->addPiece($piece);
 		$q->From->CountryCode = $req['from'];
-		$q->From->Postalcode = $req['from_postal_code'];
+		// $q->From->Postalcode = $req['from_postal_code'];
+		$q->From->City = strtoupper($req['from_city']);
 		$q->To->CountryCode = $req['to'];
-		$q->To->Postalcode = $req['to_postal_code'];
+		// $q->To->Postalcode = $req['to_postal_code'];
+		$q->To->City = strtoupper($req['to_city']);
 
 		$q->BkgDetails->ReadyTime = 'PT10H21M';
 		$q->BkgDetails->ReadyTimeGMTOffset = date('P');
