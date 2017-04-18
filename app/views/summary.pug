@@ -74,5 +74,63 @@ block content
             form(action="/dhl/pages/mail", method="POST")
               - $payload = serialize($checkout)
               input(type="hidden", value="#{$payload}", name="checkout")
-              button.button.button-primary.u-full-width Submit
+              button#finalSubmit.button.button-primary.u-full-width(style="display: none") Submit
+            #paypal-button-container.u-full-width
+block scripts
+  script(src="https://www.paypalobjects.com/api/checkout.js")
+
+
+  script.
+
+
+      // Render the PayPal button
+
+      paypal.Button.render({
+
+          // Set your environment
+
+          env: 'sandbox', // sandbox | production
+
+          // Specify the style of the button
+
+          style: {
+              label: 'checkout', // checkout || credit
+              size:  'small',    // tiny | small | medium
+              shape: 'rect',     // pill | rect
+              color: 'silver'      // gold | blue | silver
+          },
+
+          // PayPal Client IDs - replace with your own
+          // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+
+          client: {
+              sandbox:    'AUIVMVEhAOL7uvAFJFfWWUg2VMexoDwKRCrQxLFUdEFMBKngYS-8uGUg69imrspVVCQzxId9V9A6e8ki',
+              production: 'AajeRlxbw2HxdY4luCl0xSmPxn_b6I_g8nw6XOs8GnaqyV7hhzF6LhNtzy_-m71Pt7NHMs6Ns0xZhFka'
+          },
+
+          // Wait for the PayPal button to be clicked
+
+          payment: function() {
+
+              // Make a client-side call to the REST api to create the payment
+
+              return paypal.rest.payment.create(this.props.env, this.props.client, {
+                  transactions: [
+                      {
+                          amount: { total: parseFloat("<?php echo $parcel['shipping_charge'] ?>", 10), currency: "<?php echo $parcel['currency_code'] ?>" }
+                      }
+                  ]
+              });
+          },
+
+          // Wait for the payment to be authorized by the customer
+
+          onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function() {
+              document.getElementById('finalSubmit').style.display = "block";
+              document.querySelector('#paypal-button-container').style.display = 'none';
+            });
+          }
+
+      }, '#paypal-button-container');
 

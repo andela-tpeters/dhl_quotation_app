@@ -16,12 +16,12 @@ block content
                   option(value="US") USA
               .six.columns
                 label(for="from_postal_code") State/City
-                //- input(type="text", name="quote[0][from_postal_code]", id="from_postal_code", class="twelve columns")
-                select(name="quote[0][from_city]", id="to", class="twelve columns")
-                  option(value="London") London
-                  option(value="New York") New York
-                  each state in $states
-                    option(value="#{state->capital}") #{state->capital}
+                input(type="text", name="quote[0][from_postal_code]", id="from_postal_code", class="twelve columns")
+                //- select(name="quote[0][from_city]", id="to", class="twelve columns")
+                //-   option(value="London") London
+                //-   option(value="New York") New York
+                //-   each state in $states
+                //-     option(value="#{state->capital}") #{state->capital}
             .row
               .six.columns
                 label(for="to") To
@@ -33,8 +33,8 @@ block content
                 label(for="to_postal_code") State/City
                 //- input(type="text", name="quote[0][to_postal_code]", id="to_postal_code", class="twelve columns")
                 select(name="quote[0][to_city]", id="to", class="twelve columns") 
-                  option(value="London") London
-                  option(value="New York") New York
+                  //- option(value="London") London
+                  //- option(value="New York") New York
                   each state in $states
                     option(value="#{state->capital}") #{state->capital}
             .row
@@ -76,3 +76,4 @@ block content
             .row
               .twelve.columns
                 button(type="submit", class="twelve columns button button-primary") Submit Quote
+

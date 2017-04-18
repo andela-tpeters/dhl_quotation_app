@@ -7,6 +7,10 @@ RewriteBase /dhl/
 #RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^dhl/?$ index.php [L]
 
+# Redirect Trailing Slashes If Not A Folder...
+#RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^/?$ index.php [L]
+
 RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.gif|\.jpeg|\.bmp|\.css|\.js)$
 RewriteRule (.*)  index.php?path=$1 [L]
 

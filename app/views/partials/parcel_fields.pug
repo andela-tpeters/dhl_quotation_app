@@ -29,6 +29,8 @@ button.twelve.columns.button.button-primary(type='button', data-toggle='collapse
                   label.twelve.columns Weight
                 .six.columns
                   input.twelve.columns(name="checkout[parcel][weight]", type="number", required="required", value="#{$quote['weight']}", readonly='readonly')
+                  input.twelve.columns(name="checkout[parcel][shipping_charge]", type="hidden", value="#{$quote['shipping_charge']}")
+                  input.twelve.columns(name="checkout[parcel][currency_code]", type="hidden", value="#{$quote['currency_code']}")
             .three.columns
                   .row
                     .six.columns

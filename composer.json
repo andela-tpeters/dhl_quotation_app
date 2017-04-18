@@ -11,7 +11,9 @@
     "minimum-stability": "dev",
     "require": {
         "alfallouji/dhl_api": "^0.2.10",
-        "kylekatarnls/jade-php": "^2.5"
+        "kylekatarnls/jade-php": "^2.5",
+        "omnipay/paypal": "^2.6",
+        "paypal/rest-api-sdk-php": "*"
     },
     "autoload": {
         "psr-4": {

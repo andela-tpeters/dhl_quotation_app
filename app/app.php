@@ -38,7 +38,7 @@ class App
 		$parts[0] == "" ? array_shift($parts) : null;
 		$klass = $this->get_route_class($parts[0]);
 		$parts[0] = new $klass;
-		$parts[1] = $this->get_method($parts[1]);
+		$parts[1] = isset($parts[1]) ? $this->get_method($parts[1]) : null;
 		$this->path_parts = $parts;
 	}
 

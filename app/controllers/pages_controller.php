@@ -1,5 +1,6 @@
 <?php
 namespace App\Controllers;
+use Omnipay\PayPal\ExpressGateway;
 
 /**
 * This is the controller that generates the pages
@@ -16,6 +17,7 @@ class PagesController extends BaseController
 	}
 
 	public function postSummary($params) {
+		// dd($params);
 		return $this->render('summary', ['checkout'=> $params['checkout']]);
 	}
 

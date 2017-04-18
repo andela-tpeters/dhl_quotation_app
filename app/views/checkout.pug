@@ -29,6 +29,9 @@ block content
         tr
           td No of Pieces
           td #{$quote['no_of_pieces']}
+        tr
+          td Total Shipping Charge
+          td #{$quote['shipping_charge']} #{$quote['currency_code']}
   	.eight.columns
       .row
         .twelve.columns
@@ -46,4 +49,4 @@ block content
     	        include partials/where_to_mail.pug
       	      .row
       	      	.six.columns.u-pull-right
-      	      		button.u-pull-right.button(type="submit", style="background-color: white") Submit
+      	      		button#continueButton.u-pull-right.button(type="submit", style="background-color: white") Submit &amp; Continue
