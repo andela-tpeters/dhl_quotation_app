@@ -62,11 +62,20 @@ class QuotationController extends BaseController
 		$piece = $this->buildPiece($req, 1);
 		$q->BkgDetails->addPiece($piece);
 		$q->From->CountryCode = $req['from'];
-		$q->From->Postalcode = $req['from_postal_code'];
-		// $q->From->City = strtoupper($req['from_city']);
+
+		if(preg_match('/\d+/', $req['from_postal_code'])) {
+			$q->From->Postalcode = strtoupper($req['from_postal_code']);
+		} else {
+			$q->From->City = strtoupper($req['from_postal_code']);
+		}
+
 		$q->To->CountryCode = $req['to'];
-		// $q->To->Postalcode = $req['to_postal_code'];
-		$q->To->City = strtoupper($req['to_city']);
+
+		if(preg_match('/\d+/', $req['to_postal_code'])) {
+			$q->To->Postalcode = $req['to_postal_code'];
+		} else {
+			$q->To->City = strtoupper($req['to_postal_code']);
+		}
 
 		$q->BkgDetails->ReadyTime = 'PT10H21M';
 		$q->BkgDetails->ReadyTimeGMTOffset = date('P');

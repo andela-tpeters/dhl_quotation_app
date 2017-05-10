@@ -10,6 +10,7 @@ use App\App;
 
 
 $dhl = new App();
+$viewResult = '';
 
 function dd($val) {
 	echo "<pre>";
@@ -29,7 +30,16 @@ $path_info = str_replace('/dhl/','', $request_path);
 // return $path_info !== "/" ? $dhl->build($path_info, $_SERVER["REQUEST_METHOD"])->response() : $dhl->build()->response();
 
 if(!preg_match('/index.php/',$path_info) && !empty($path_info)) {
-	return $dhl->build($path_info, $_SERVER["REQUEST_METHOD"])->response();
+  try {
+  	$viewResult = $dhl->build($path_info, $_SERVER["REQUEST_METHOD"])->response();
+  } catch (Exception $e) {
+    dd($e->getMessage());
+  }
 } else {
-	return $dhl->build()->response();
+  try {
+  	$viewResult = $dhl->build()->response();
+  } catch (Exception $e) {
+    dd($e->getMessage());
+  }
 }
+echo $viewResult;

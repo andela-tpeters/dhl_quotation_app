@@ -24,12 +24,12 @@ class App
 			
 			$klass_method = array($klass, $method);
 			if(is_callable($klass_method, true)) {
-				echo call_user_func($klass_method, $_REQUEST);
+				return call_user_func($klass_method, $_REQUEST);
 			} else {
-				echo $klass->not_found();
+				return $klass->not_found();
 			}
 		} else {
-			echo $klass->not_found();
+			return $klass->not_found();
 		}
 	}
 
